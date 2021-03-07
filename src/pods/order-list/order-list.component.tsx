@@ -17,7 +17,7 @@ export const OrderListComponent: React.FC<OrderListComponent> = ({
 }) => {
   console.log("se ha renderizado el order-list-component");
 
-  const orderColumns = ['Id', 'Fecha', 'Cliente', 'Estado']
+  const orderColumns: Array<keyof Order> = ["id", "date", "client", "status"];
 
   return (
     <div className={`${classes.root}`}>

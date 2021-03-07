@@ -7,7 +7,9 @@ const defaultTheme = createMuiTheme();
 export const theme: Theme = merge(defaultTheme, {
   palette: {
     primary: {
-      main: '#01BA9E'
+      main: '#01BA9E',
+      dark: '#00846B',
+      light: '#E9FEF8'
     },
     secondary: {
       main: '#00846B'
@@ -19,7 +21,7 @@ export const theme: Theme = merge(defaultTheme, {
       main: '#ef4f4f',
     },
     info: {
-      main: '#5E299A',
+      main: '#E9FEF8',
     },
     table: {
       row: {

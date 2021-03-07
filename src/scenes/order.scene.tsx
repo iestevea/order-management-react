@@ -1,4 +1,5 @@
 import { Header } from "common/components/header/header";
+import { OrderContainer } from "pods/order";
 import React from "react";
 
 export const OrderScene: React.FC = () => {
@@ -6,7 +7,7 @@ export const OrderScene: React.FC = () => {
     <>
       <Header />
       <div className="content">
-        {/* <OrderContainer /> */}
+        <OrderContainer />
       </div>
     </>
   );

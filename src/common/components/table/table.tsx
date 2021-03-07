@@ -5,18 +5,18 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import { Order } from "pods/order-list/order-list.vm";
+import { Order, Line } from "pods/order/order.vm";
 import React, { useEffect, useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import * as classes from "./table.styles";
 
-interface Props {
+interface Props<Type> {
   columns: string[];
-  data: Order[];
+  data: Type[];
   onRowClick?: (id: string) => void;
 }
 
-export const TableComponent: React.FC<Props> = ({
+export const TableComponent: React.FC<Props<any>> = ({
   columns,
   data,
   onRowClick,
@@ -26,21 +26,36 @@ export const TableComponent: React.FC<Props> = ({
   const body = useMemo(() => {
     return (
       <TableBody>
-        {data.map((item: Order) => {
+        {data.map((item: any, index: number) => {
           return (
-            <TableRow key={item.id} onClick={() => onRowClick(item.id)}>
-              <TableCell component="th" scope="row">
-                {item.id}
-              </TableCell>
-              <TableCell align="right">{item.date}</TableCell>
-              <TableCell align="right">{item.client}</TableCell>
-              <TableCell align="right">{item.status}</TableCell>
+            <TableRow
+              key={`table-row-${item.id} -${index}`}
+              onClick={() => onRowClick(item.id)}
+            >
+              {columns.map((column: string, index: number) =>
+                index === 0 ? (
+                  <TableCell
+                    key={`table-cell-${item.id}-${index}`}
+                    component="th"
+                    scope="row"
+                  >
+                    {item[column]}
+                  </TableCell>
+                ) : (
+                  <TableCell
+                    key={`table-cell-${item.id}-${index}`}
+                    align="right"
+                  >
+                    {item[column]}
+                  </TableCell>
+                )
+              )}
             </TableRow>
           );
         })}
       </TableBody>
     );
-  }, [data]);
+  }, [data, columns]);
 
   return (
     <div className={classes.root}>
