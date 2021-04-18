@@ -47,7 +47,7 @@ export const OrderListComponent: React.FC<OrderListComponent> = ({
           rows={orderList}
           columns={linesColumns}
           autoHeight
-          onRowClick={(param) => onRowClick((param.rowIndex +1).toString())}
+          onRowClick={(param) => onRowClick((param.row.id).toString())}
           pageSize={5}
         />
       </div>
