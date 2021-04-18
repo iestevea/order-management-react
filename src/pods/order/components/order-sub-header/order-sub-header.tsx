@@ -9,7 +9,6 @@ interface Props {
 }
 
 export const OrderSubHeader: React.FC<Props> = ({ onSendOrder }) => {
-  console.log("se ha renderizado el order-subheader");
   const {order} = useContext(OrderContext);
   return (
     <div className={`${classes.root}`}>

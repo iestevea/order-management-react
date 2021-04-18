@@ -27,8 +27,6 @@ export const OrderComponent: React.FC<OrderComponent> = ({
   const { order } = useContext(OrderContext);
   const [selectedLines, setSelectedLines] = useState<number[]>([]);
 
-  console.log("se ha renderizado el order-component");
-
   const linesColumns: GridColumns = useMemo(
     () => [
       { field: "id", headerName: "ID", width: 170 },
