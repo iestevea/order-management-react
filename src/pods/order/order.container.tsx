@@ -1,28 +1,56 @@
-import { routes } from "core/router";
-import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { GridRowId } from "@material-ui/data-grid";
+import Snackbar from "@material-ui/core/Snackbar";
+import React, { useEffect, useReducer, useState } from "react";
+import { useParams } from "react-router-dom";
 import { getOrder } from "./api";
+import { OrderContext } from "./context/order-context";
 import { OrderComponent } from "./order.component";
 import { createEmptyOrder, mapOrderApiToVm } from "./order.mapper";
-import { Order } from "./order.vm";
+import { reducer } from "./reducer/order-reducer";
 
 export const OrderContainer: React.FC = () => {
-  const history = useHistory();
   const { id }: any = useParams();
 
-  console.log(id);
+  const [order, dispatch] = useReducer(reducer, createEmptyOrder());
+  const [showAlert, setShowAlert] = useState(false);
 
-  const [order, setOrder] = useState<Order>(createEmptyOrder());
+  const handleSendOrder = () => {
+    setShowAlert(true)
+  };
 
-  const handleSendOrder = (id: string) => {
-    console.log(id);
+  const handleClose = () => {
+    setShowAlert(false);
   };
 
   const onLoadOrder = async () => {
     try {
       const apiOrder = await getOrder(id);
       const vMOrder = mapOrderApiToVm(apiOrder);
-      setOrder(vMOrder);
+      dispatch({ type: "UPDATE_ORDER", payload: vMOrder });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleValidateLines = async (lines: number[], valid: boolean) => {
+    try {
+      dispatch({
+        type: valid ? "VALID_LINES" : "INVALID_LINES",
+        payload: lines,
+      });
+      await onLoadOrder();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleUpdatePrice = async (id: GridRowId, price: string) => {
+    try {
+      dispatch({
+        type: "UPDATE_PRICE",
+        payload: { id, price: parseFloat(price) },
+      });
+      await onLoadOrder();
     } catch (error) {
       console.log(error);
     }
@@ -34,5 +62,23 @@ export const OrderContainer: React.FC = () => {
 
   console.log("se ha renderizado el order-container");
 
-  return <OrderComponent order={order} onSendOrder={handleSendOrder} />;
+  return (
+    <OrderContext.Provider value={{ order, dispatch }}>
+      <OrderComponent
+        onSendOrder={handleSendOrder}
+        onValidateLines={handleValidateLines}
+        onUpdatePrice={handleUpdatePrice}
+      />
+      <Snackbar
+        open={showAlert}
+        onClose={handleClose}
+        message="El pedido se ha enviado correctamente"
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        autoHideDuration={5000}
+      />
+    </OrderContext.Provider>
+  );
 };

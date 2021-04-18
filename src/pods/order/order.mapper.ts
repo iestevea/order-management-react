@@ -22,6 +22,14 @@ export const mapOrderApiToVm = (order: apiModel.Order): viewModel.Order =>
   totalPrice: getTotalPrice(order.lines)
 })
 
+export const mapOrderVmToApi = (order: viewModel.Order): apiModel.Order =>
+({
+  id: order.id,
+  client: order.client,
+  date: order.date,
+  lines: order.lines
+})
+
 export const createEmptyOrder = () => ({
   id: '',
   date: '',

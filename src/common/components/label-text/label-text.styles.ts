@@ -7,5 +7,6 @@ export const root = css`
   }
   p.label {
     margin-bottom: 8px;
+    font-weight: bold;
   }
 `;

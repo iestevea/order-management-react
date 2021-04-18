@@ -6,13 +6,11 @@ import { TableComponent } from "common/components/table/table";
 
 interface OrderListComponent {
   orderList: Order[];
-  onDelete: (id: string) => void;
   onRowClick: (id: string) => void;
 }
 
 export const OrderListComponent: React.FC<OrderListComponent> = ({
   orderList,
-  onDelete,
   onRowClick
 }) => {
   console.log("se ha renderizado el order-list-component");

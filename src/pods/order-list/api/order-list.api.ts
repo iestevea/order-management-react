@@ -1,8 +1,9 @@
+import Axios from 'axios';
 import { Order } from "./order-list.api-model";
-import { mockOrderList } from "./order-list.mock-data";
 
-let orderList = [...mockOrderList];
+const ordersApi = process.env.MOCK_API;
 
 export const getOrderList = async (): Promise<Order[]> => {
-  return orderList;
+  const { data } = await Axios.get(`${ordersApi}/orders`)
+  return data;
 }

@@ -28,19 +28,13 @@ export const OrderListContainer: React.FC = () => {
   const handleRowClick = (id: string) => {
     history.push(routes.editOrder(id));
   };
-  const handleDelete = (id: string) => {
-    setOrders((orders) => orders.filter((order) => order.id !== id));
-  };
-
+  
   console.log("se ha renderizado el order-list-container");
 
   return (
     <OrderListComponent
       orderList={orders}
-      // onAdd={handleAdd}
-      // onEdit={handleEdit}
       onRowClick={handleRowClick}
-      onDelete={handleDelete}
     />
   );
 };

@@ -62,7 +62,7 @@ export const TableComponent: React.FC<Props<any>> = ({
       <TableContainer component={Paper}>
         <Table className={`${classes.root} table`} aria-label="simple table">
           <TableHead>
-            <TableRow>
+            <TableRow selected>
               {columns.map((column: string, index: number) =>
                 index === 0 ? (
                   <TableCell key={`cell-${index}`}>{column}</TableCell>
