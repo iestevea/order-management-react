@@ -1,15 +1,14 @@
 {
-  "name": "server",
+  "name": "order-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Order API",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "mock-server": "json-server --routes ./config/routes.json --watch mock-data/orders-data.json --no-delete-cascade"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Iciar",
+  "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1"
+    "json-server": "^0.16.1"
   }
 }
