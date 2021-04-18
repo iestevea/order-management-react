@@ -8,7 +8,7 @@
         {
           "id": "1",
           "price": 263,
-          "status": "valid"
+          "status": "invalid"
         },
         {
           "id": "2",
@@ -29,8 +29,8 @@
       "lines": [
         {
           "id": "1",
-          "price": 29,
-          "status": "valid"
+          "price": 290,
+          "status": "invalid"
         },
         {
           "id": "2",

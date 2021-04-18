@@ -92,11 +92,12 @@ export const OrderComponent: React.FC<OrderComponent> = ({
           }
         />
       </div>
-      <div className="order-table" style={{ height: 400, width: "100%" }}>
+      <div className="order-table">
         <DataGrid
           rows={order.lines}
           columns={linesColumns}
           pageSize={5}
+          autoHeight
           checkboxSelection
           onRowSelected={handleSelectedLine}
         />
