@@ -28,8 +28,6 @@ export const OrderListContainer: React.FC = () => {
   const handleRowClick = (id: string) => {
     history.push(routes.editOrder(id));
   };
-  
-  console.log("se ha renderizado el order-list-container");
 
   return (
     <OrderListComponent

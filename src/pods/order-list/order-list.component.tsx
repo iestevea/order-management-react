@@ -13,7 +13,6 @@ export const OrderListComponent: React.FC<OrderListComponent> = ({
   orderList,
   onRowClick,
 }) => {
-  console.log("se ha renderizado el order-list-component");
 
   const linesColumns: GridColumns = useMemo(
     () => [

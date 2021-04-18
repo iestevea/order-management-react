@@ -60,8 +60,6 @@ export const OrderContainer: React.FC = () => {
     onLoadOrder();
   }, []);
 
-  console.log("se ha renderizado el order-container");
-
   return (
     <OrderContext.Provider value={{ order, dispatch }}>
       <OrderComponent

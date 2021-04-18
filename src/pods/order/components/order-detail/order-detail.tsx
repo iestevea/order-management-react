@@ -7,8 +7,6 @@ interface Props {
 }
 
 export const OrderDetail: React.FC<Props> = ({ onValidateLines }) => {
-  console.log("se ha renderizado el order-detail");
-
   return (
     <div className={`${classes.root}`}>
       <Button
