@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "run-p -l type-check:watch start:dev start:server",
-    "start:server": "cd server && npm run mock-server",
+    "start:server": "cd server && npm install && npm run mock-server",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "start:dev": "webpack-dev-server --config ./config/webpack/dev.js --open",
